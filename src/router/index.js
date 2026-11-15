@@ -13,7 +13,20 @@ const router = createRouter({
       path: '/destination/:slug',
       name: 'destination',
       component: () => import('../views/DestinationView.vue'),
-      props: true
+      props: true,
+      children: [
+        {
+          path: ':experienceSlug',
+          name: 'experience',
+          component: () => import('../views/ExperienceView.vue'),
+          props: true
+        }
+      ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/NotFoundView.vue')
     }
   ]
 })
